@@ -44,6 +44,6 @@ dispatcher.off('update:foo');
 // will unsubscribe this handler from all events
 .off(handler)
 
-// will remove only this handler under particular
+// will remove only this handler under particular event
 .off(eventName, handler) 
 ```
