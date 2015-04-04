@@ -45,7 +45,7 @@ describe('pubSub', function() {
     assert.equal(count, 1);
   });
   
-  it('shoud pass data to listener', function() {
+  it('should pass data to listener', function() {
     var counter = function (event, data) {
       count += data;
     };
@@ -54,7 +54,7 @@ describe('pubSub', function() {
     assert.equal(count, 8);
   });
   
-  it('shoud execute callback with correct context', function() {
+  it('should execute callback with correct context', function() {
     var context = {
       count: 0
     };
@@ -67,7 +67,7 @@ describe('pubSub', function() {
     
   });
   
-  it('shoud execute callback with observer context when no context specified', function () {
+  it('should execute callback with observer context when no context specified', function () {
     var Obj = function () {
       this.count = 2;
     };
@@ -82,6 +82,90 @@ describe('pubSub', function() {
     obj.on(event, obj.counter);
     obj.trigger(event, null);
     assert.equal(1, obj.getCount());
+  });
+  
+  it('should able to remove all handlers', function() {
+    var context = {
+      count: 0
+    };
+    var counter = function () {
+      this.count++;
+    };
+    var counter2 = function (event, data) {
+      this.count += data;
+    };
+    observer.on(event, counter, context);
+    observer.on(event, counter2, context);
+    
+    observer.trigger(event, 2);
+    observer.off();
+    observer.trigger(event);
+    assert.equal(3, context.count);
+    
+  });
+  
+  it('should able to remove all handlers from particular event', function() {
+    var context = {
+      count: 0
+    };
+    var counter = function () {
+      this.count++;
+    };
+    observer.on('event1', counter, context);
+    observer.on('event2', counter, context);
+    
+    observer.trigger('event1');
+    observer.trigger('event2');
+    assert.equal(2, context.count);
+    observer.off('event1');
+    observer.trigger('event1');
+    observer.trigger('event2');
+    assert.equal(3, context.count);
+    
+  });
+  
+  it('should able to remove handler from all events', function() {
+    var context = {
+      count: 0
+    };
+    var counter = function () {
+      this.count++;
+    };
+    observer.on('event1', counter, context);
+    observer.on('event2', counter, context);
+    
+    observer.trigger('event1');
+    observer.trigger('event2');
+    assert.equal(2, context.count);
+    observer.off(counter);
+    observer.trigger('event1');
+    observer.trigger('event2');
+    assert.equal(2, context.count);
+    
+  });
+  
+  it('should able to remove handler under specified event', function() {
+    var context = {
+      count: 0
+    };
+    var counter = function () {
+      this.count++;
+    };
+    var counter1 = function () {
+      this.count++;
+    };
+    observer.on('event1', counter, context);
+    observer.on('event1', counter1, context);
+    observer.on('event2', counter, context);
+    
+    observer.trigger('event1');
+    observer.trigger('event2');
+    assert.equal(3, context.count);
+    observer.off('event1', counter);
+    observer.trigger('event1');
+    observer.trigger('event2');
+    assert.equal(5, context.count);
+    
   });
   
 });

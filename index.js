@@ -33,7 +33,7 @@ PubSub.prototype = {
   },
   off: function(event, func) {
     function remover(e, f, events) {
-      for (i = 0, l = events[e].length; i < l; i++) {
+      for (i = 0; i < events[e].length; i++) {
         if (events[e][i].callback === f) {
           events[e].splice(i, 1);
         }
@@ -41,13 +41,15 @@ PubSub.prototype = {
     }
     if (arguments.length === 0) {
       this.events = {};
-    } else if (event && !func) {
-      this.events[event] = [];
-    } else if (!event && func) {
-      for (var e in this.events) {
-        remover(e, func, this.events);
+    } else if (arguments.length === 1) {
+      if (typeof(arguments[0]) === 'string') {
+        this.events[arguments[0]] = [];
+      } else if (typeof(arguments[0]) === 'function') {
+        for (var e in this.events) {
+          remover(e, arguments[0], this.events);
+        }
       }
-    } else if (event && func) {
+    } else if (arguments.length === 2 && typeof(arguments[0]) === 'string' && typeof(arguments[1]) === 'function') {
       remover(event, func, this.events);
     }
   }
