@@ -1,0 +1,28 @@
+{
+  "name": "pubsub",
+  "version": "1.0.0",
+  "description": "Implementation of publish/subscribe pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romantaraban/pubsub.git"
+  },
+  "keywords": [
+    "js",
+    "pattern",
+    "publish/subscribe"
+  ],
+  "author": "Roman Taraban",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/romantaraban/pubsub/issues"
+  },
+  "homepage": "https://github.com/romantaraban/pubsub",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.1"
+  }
+}
