@@ -1,7 +1,7 @@
 var PubSub = function() {};
 
 PubSub.prototype = {
-  trigger: function(event, propName, data) {
+  trigger: function(event, data) {
     if (!this.events || !this.events[event]) {
       return false;
     }
@@ -10,7 +10,7 @@ PubSub.prototype = {
       len = subscribers ? subscribers.length : 0;
 
     while (len--) {
-      subscribers[len].callback.call(subscribers[len].context, event, propName, data);
+      subscribers[len].callback.call(subscribers[len].context, event, data);
     }
 
     return this;
