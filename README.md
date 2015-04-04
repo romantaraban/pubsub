@@ -13,7 +13,7 @@ dispatcher.on('update:foo', function(event, prop, value) {
 });
 // trigger event
 dispatcher.trigger('update:foo', 'bar');
-// remove listner
+// remove listener
 dispatcher.off('update:foo');
 
 ```
