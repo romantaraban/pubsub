@@ -35,10 +35,8 @@ dispatcher.off('update:foo');
 ```
 
 ```
-.off(eventName, handler)
+.off() // will remove all handlers
+.off(eventName) // will remove all handlers on this event
+.off(handler) // will unsubscribe this handler from all events
+.off(eventName, handler) // will remove only this handler under particular
 ```
-- If method called without arguments - it will remove all handlers
-- If method called with eventName - it will remove all handlers on this event
-- If method called with handler - it will unsubscribe this handler from all events
-- If method called with both arguments - it will remove only this handler under particular event
-
