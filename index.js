@@ -4,7 +4,20 @@
  * @license MIT
  */
 
-(function() {
+(function(root, factory) {
+if (typeof define === 'function' && define.amd) {
+  // AMD. Register as an anonymous module.
+  define([], factory);
+} else if (typeof exports === 'object') {
+  // Node. Does not work with strict CommonJS, but
+  // only CommonJS-like environments that support module.exports,
+  // like Node.
+  module.exports = factory();
+} else {
+  // Browser globals (root is window)
+  root.PubSub = factory();
+}
+}(this, function() {
   "use strict";
 
   var PubSub = function() {};
@@ -64,13 +77,6 @@
     }
   };
 
-  if (typeof define === "function" && define.amd) {
-    define(function() {
-      return PubSub;
-    });
-  } else if (typeof module != "undefined" && typeof module.exports != "undefined") {
-    module.exports = PubSub;
-  } else {
-    window['PubSub'] = PubSub;
-  }
-}());
+  return PubSub;
+
+}));
