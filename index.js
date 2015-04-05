@@ -15,8 +15,8 @@
         return false;
       }
 
-      var subscribers = this.events[event],
-        len = subscribers ? subscribers.length : 0;
+      var subscribers = this.events[event];
+      var len = subscribers ? subscribers.length : 0;
 
       while (len--) {
         subscribers[len].callback.call(subscribers[len].context, event, data);
