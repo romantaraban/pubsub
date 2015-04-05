@@ -4,7 +4,7 @@
   "description": "Implementation of publish/subscribe pattern",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha test.js | jscs index.js"
   },
   "repository": {
     "type": "git",
