@@ -15,7 +15,16 @@
     "pattern",
     "publish/subscribe"
   ],
-  "author": "Roman Taraban",
+  "author": {
+    "name": "Roman Taraban",
+    "email": "rom.taraban@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "romantaraban",
+      "email": "rom.taraban@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/romantaraban/pubsub/issues"
