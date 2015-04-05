@@ -13,7 +13,7 @@ dispatcher.on('update:foo', function(event, prop, value) {
 });
 // trigger event
 dispatcher.trigger('update:foo', 'bar');
-// remove listner
+// remove listener
 dispatcher.off('update:foo');
 
 ```
@@ -44,6 +44,6 @@ dispatcher.off('update:foo');
 // will unsubscribe this handler from all events
 .off(handler)
 
-// will remove only this handler under particular
+// will remove only this handler under particular event
 .off(eventName, handler) 
 ```
