@@ -23,7 +23,8 @@
   var PubSub = function() {};
 
   PubSub.prototype = {
-    trigger: function(event, data) {
+    trigger: function() {
+      var event = arguments[0];
       if (!this.events || !this.events[event]) {
         return false;
       }
@@ -32,7 +33,7 @@
       var len = subscribers ? subscribers.length : 0;
 
       while (len--) {
-        subscribers[len].callback.call(subscribers[len].context, event, data);
+        subscribers[len].callback.apply(subscribers[len].context, arguments);
       }
 
       return this;

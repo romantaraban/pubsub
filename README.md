@@ -31,7 +31,7 @@ dispatcher.off('update:foo');
 {object} context - context in which handler will called
 
 ```javascript
-.trigger(eventName, data)
+.trigger(eventName, [data, data2, ...])
 ```
 
 ```javascript
