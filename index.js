@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-(function () {
+(function() {
   "use strict";
 
   var PubSub = function() {};
@@ -63,9 +63,9 @@
       }
     }
   };
-  
+
   if (typeof define === "function" && define.amd) {
-    define(function () {
+    define(function() {
       return PubSub;
     });
   } else if (typeof module != "undefined" && typeof module.exports != "undefined") {
