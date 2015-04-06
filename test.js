@@ -179,8 +179,9 @@ describe('pubSub', function() {
       var pubsubR = new Mod();
       if (!pubsubR.on) {
         throw err;
+      } else {
+        done();
       }
-      done();
     });
 
   });
