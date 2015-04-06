@@ -42,11 +42,6 @@
       this.events || (this.events = {});
       this.events[event] || (this.events[event] = []);
 
-      //if event was defined as a hash - convert to array representation
-      if (typeof(this.events[event]) === 'function') {
-        this.events[event] = [this.events[event]];
-      }
-
       this.events[event].push({
         callback: func,
         context: context || this
