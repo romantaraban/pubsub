@@ -168,6 +168,26 @@ describe('pubSub', function() {
     assert.equal(5, context.count);
 
   });
+  
+   it('should able to remove handler with specified context', function() {
+    var counter = 0;
+    var context = {};
+    var context2 = {};
+    var count = function() {
+      counter++;
+    };
+
+    observer.on('event', count, context);
+    observer.on('event', count, context2);
+
+    observer.trigger('event');
+    assert.equal(2, counter);
+     
+    observer.off('event', count, context2);
+    observer.trigger('event');
+    assert.equal(3, counter);
+
+  });
 
   it('should works with AMD', function(done) {
     requirejs.config({

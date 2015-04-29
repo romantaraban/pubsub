@@ -49,11 +49,12 @@
 
       return this;
     },
-    off: function(event, func) {
-      function remover(e, f, events) {
-        for (var i = 0; i < events[e].length; i++) {
-          if (events[e][i].callback === f) {
-            events[e].splice(i, 1);
+    off: function(event, func, context) {
+      var allEvents = this.events;
+      function remover(e, f, c) {
+        for (var i = 0; i < allEvents[e].length; i++) {
+          if (allEvents[e][i].callback === f && (!c || allEvents[e][i].context === c)) {
+            allEvents[e].splice(i, 1);
           }
         }
       }
@@ -64,11 +65,13 @@
           this.events[arguments[0]] = [];
         } else if (typeof(arguments[0]) === 'function') {
           for (var e in this.events) {
-            remover(e, arguments[0], this.events);
+            remover(e, arguments[0]);
           }
         }
       } else if (arguments.length === 2 && typeof(arguments[0]) === 'string' && typeof(arguments[1]) === 'function') {
-        remover(event, func, this.events);
+        remover(event, func);
+      } else if (arguments.length === 3 && typeof(arguments[0]) === 'string' && typeof(arguments[1]) === 'function' && typeof(arguments[2]) === 'object') {
+        remover(event, func, context);
       }
     }
   };
